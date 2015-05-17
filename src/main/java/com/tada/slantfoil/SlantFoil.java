@@ -122,8 +122,8 @@ public class SlantFoil {
       /**
       *  Fin
       */
-      readPath = "R:\\Leifs\\Flyg\\Lansen\\Foils";
-      writePath = "R:\\Leifs\\Flyg\\Lansen\\Foils\\out\\fin\\";
+      readPath = "X:\\Lansen\\Foils";
+      writePath = readPath + "\\out\\fin\\";
       rootFile = new File(readPath+"\\naca64a009s25.txt");
       tipFile = new File(readPath+"\\naca64a009s25.txt");
      profile = new ReadProfile(rootFile);

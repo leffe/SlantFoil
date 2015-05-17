@@ -5,21 +5,11 @@
     "sweep":-250.38,
     "tipPosition":418.12,
     "parameterList":[
-      {"name":"zero",
-       "position":0.0,
-       "angle":90},
-      {"name":"S0B",
-       "position":2.75,
-       "angle":90},
-      {"name":"S0A",
-       "position":87.22,
-       "angle":143.75},
-      {"name":"S1",
-       "position":144.14,
-       "angle":111.075},
-      {"name":"Top",
-       "position":418.12,
-       "angle":90}
+      {"name":"zero", "position":0.0, "angle":90},
+      {"name":"S0B", "position":2.75, "angle":90},
+      {"name":"S0A", "position":87.22, "angle":143.75},
+      {"name":"S1", "position":144.14, "angle":111.075},
+      {"name":"Top", "position":418.12, "angle":90}
     ]
   },
   {"entryName":"Name SECOND entry",
