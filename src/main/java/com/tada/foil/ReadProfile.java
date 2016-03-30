@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
@@ -16,17 +15,21 @@ public class ReadProfile {
     List<DoublePair> mUpper;
     List<DoublePair> mLower;
 
-    public enum Surface {UPPER, LOWER};
+    public enum Surface {UPPER, LOWER, BOTH};
     
-    public ReadProfile(File inputFile) {
-        readProfileUpperAndLower(inputFile);
-    }
+//    public ReadProfile(File inputFile) {
+//        readProfile(Surface.BOTH, inputFile, 1.0f);
+//    }
 
-    public ReadProfile(Surface surface, File inputFile) {
-        readProfile(surface, inputFile);
-    }
+//    public ReadProfile(Surface surface, File inputFile) {
+//    	readProfile(surface, inputFile, 1.0f);
+//    }
 
-    public List<DoublePair> getUpper() {
+    public ReadProfile(File rootFile, float rootScaleThickness) {
+		readProfile(Surface.BOTH, rootFile, rootScaleThickness);
+	}
+
+	public List<DoublePair> getUpper() {
         return mUpper;
     }
 
@@ -34,7 +37,7 @@ public class ReadProfile {
         return mLower;
     }
 
-    private void readProfileUpperAndLower(File inputFile) {
+    private void readProfile(Surface surface, File inputFile, float yScale) {
         ArrayList<DoublePair> list = new ArrayList<DoublePair>();
         try {
             FileReader fr = new FileReader(inputFile);
@@ -47,18 +50,32 @@ public class ReadProfile {
                     Scanner scanner = new Scanner(line);
                     if (scanner.hasNextFloat()) {
                         float x = scanner.nextFloat();
-                        float y = scanner.nextFloat();
+                        float y = scanner.nextFloat() * yScale;
                         list.add(new DoublePair(x, y));
                         if (x == 0f) {
                             center = list.size();
                         }
                     }
+                    scanner.close();
                 }
-                mUpper = list.subList(0, center);
-                mLower = list.subList(center - 1, list.size());
-                // Reverse order of top
-                mUpper = reverse(mUpper);
                 textReader.close();
+                switch (surface) {
+                	case UPPER : {
+                		mUpper = list;
+                    	break;
+                	}
+                	case LOWER : {
+                		mLower = list;
+                    	break;
+                	}
+                	case BOTH : {
+                        mUpper = list.subList(0, center);
+                        mLower = list.subList(center - 1, list.size());
+                        // Reverse order of top
+                        mUpper = reverse(mUpper);
+                		break;
+                	}
+                }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -69,37 +86,38 @@ public class ReadProfile {
         }
     }
 
-    private void readProfile(Surface surface, File inputFile) {
-        ArrayList<DoublePair> list = new ArrayList<DoublePair>();
-        try {
-            FileReader fr = new FileReader(inputFile);
-            BufferedReader textReader = new BufferedReader(fr);
-            try {
-                String line;
-                while ((line = textReader.readLine()) != null) {
-                    Scanner scanner = new Scanner(line);
-                    if (scanner.hasNextFloat()) {
-                        float x = scanner.nextFloat();
-                        float y = scanner.nextFloat();
-                        list.add(new DoublePair(x, y));
-                    }
-                }
-                textReader.close();
-                switch (surface) {
-                case UPPER : mUpper = list;
-                break;
-                case LOWER : mLower = list;
-                break;
-                }
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+//    private void readProfile(Surface surface, File inputFile) {
+//        ArrayList<DoublePair> list = new ArrayList<DoublePair>();
+//        try {
+//            FileReader fr = new FileReader(inputFile);
+//            BufferedReader textReader = new BufferedReader(fr);
+//            try {
+//                String line;
+//                while ((line = textReader.readLine()) != null) {
+//                    Scanner scanner = new Scanner(line);
+//                    if (scanner.hasNextFloat()) {
+//                        float x = scanner.nextFloat();
+//                        float y = scanner.nextFloat();
+//                        list.add(new DoublePair(x, y));
+//                    }
+//                    scanner.close();
+//                }
+//                textReader.close();
+//                switch (surface) {
+//                case UPPER : mUpper = list;
+//                break;
+//                case LOWER : mLower = list;
+//                break;
+//                }
+//            } catch (IOException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        } catch (FileNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//    }
 
     private List<DoublePair> reverse(List<DoublePair> list) {
         List<DoublePair> nl = new ArrayList<DoublePair>();

@@ -123,13 +123,15 @@ public class SlantFoil {
       *  Fin
       */
       readPath = "X:\\Lansen\\Foils";
-      writePath = readPath + "\\out\\fin\\";
+      writePath = readPath + "\\out\\" + parameters.getEntryName() + "\\";
+      new File(writePath).mkdirs();
+      
       rootFile = new File(readPath+"\\naca64a009s25.txt");
       tipFile = new File(readPath+"\\naca64a009s25.txt");
-     profile = new ReadProfile(rootFile);
+     profile = new ReadProfile(rootFile, parameters.getRootScaleThickness());
      rootEdgeUpper = new EdgeProfile(profile.getUpper());
      
-     profile = new ReadProfile(tipFile);
+     profile = new ReadProfile(tipFile, parameters.getTipScaleThickness());
      tipEdgeUpper = new EdgeProfile(profile.getUpper());
      
      upperSurface = new WingSurface(rootEdgeUpper, tipEdgeUpper);

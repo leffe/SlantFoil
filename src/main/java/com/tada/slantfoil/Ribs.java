@@ -54,20 +54,20 @@ public class Ribs {
             WriteProfile.write(profile, 1f, os);
             os.close();
             os = getOutputStream(new File(fullPath + "_scale.txt"));
-            WriteProfile.write(profile, mSurface.getCordAt(set.mPosition)    , os);
+            WriteProfile.write(profile, mSurface.getmTeThickness(), mSurface.getmTeStartAt(), os);
             os.close();
             os = getOutputStream(new File(fullPath + ".scr"));
             WriteProfile.writeAutocad(profile, mSurface.getmTeThickness(), mSurface.getmTeStartAt(), os);
             os.close();
         }
-        String fullPath = path + mLabel + "_Mesh_";
-        os = getOutputStream(new File(fullPath + ".scr"));
-        for (RibSet rib : mList) {
-            if (mList.indexOf(rib)+1 == mList.size()) {break;}
-            RibSet nextRib = mList.get(mList.indexOf(rib)+1); 
-            WriteProfile.writeAutocadMesh(rib, nextRib, mSurface, os);
-        }
-        os.close();
+//        String fullPath = path + mLabel + "_Mesh_";
+//        os = getOutputStream(new File(fullPath + ".scr"));
+//        for (RibSet rib : mList) {
+//            if (mList.indexOf(rib)+1 == mList.size()) {break;}
+//            RibSet nextRib = mList.get(mList.indexOf(rib)+1); 
+//            WriteProfile.writeAutocadMesh(rib, nextRib, mSurface, os);
+//        }
+//        os.close();
     }
     
     

@@ -2,19 +2,72 @@
   {"entryName":"Fin_rib",
     "rootScale":501.67, 
     "tipScale":197.14,
+    "rootScaleThickness":0.89,
+    "tipScaleThickness":0.89,
     "sweep":-250.38,
     "tipPosition":418.12,
     "parameterList":[
       {"name":"zero", "position":0.0, "angle":90},
       {"name":"S0B", "position":2.75, "angle":90},
+      {"name":"Rudder0", "position":14.0, "angle":90.0},
       {"name":"S0A", "position":87.22, "angle":143.75},
       {"name":"S1", "position":144.14, "angle":111.075},
+      {"name":"Rudder1", "position":353.77, "angle":90.0},
+      {"name":"TopStart", "position":358.12, "angle":90},
+      {"name":"TopTapperStart", "position":396.12, "angle":90},
       {"name":"Top", "position":418.12, "angle":90}
     ]
+  },
+  {"entryName":"Fin_rib_templates",
+    "rootScale":501.67, 
+    "tipScale":197.14,
+    "rootScaleThickness":0.89,
+    "tipScaleThickness":0.89,
+    "sweep":-250.835,
+    "tipPosition":418.12,
+    "parameterList":[
+      {"name":"S0-0", "position":73.74, "angle":126.5},
+      {"name":"S0-1", "position":5.0, "angle":90},
+      {"name":"S1", "position":163.602, "angle":111.48}
+    ]
+  },
+  {"entryName":"Fin_long",
+    "rootScale":755.6,
+    "tipScale":755.6,
+    "rootScaleThickness":0.55,
+    "tipScaleThickness":0.55,
+    "sweep":0.0,
+    "tipPosition":10.0,
+    "parameterList":[
+      {"name":"zero",
+       "position":0.0,
+       "angle":90.0
+      },
+      {"name":"fake",
+       "position":10.0,
+       "angle":90.0
+      }]
+  },
+  {"entryName":"Stab",
+    "rootScale":525.6,
+    "tipScale":159.6,
+    "rootScaleThickness":0.89,
+    "tipScaleThickness":0.89,
+    "sweep":-301.0,
+    "tipPosition":502.45,
+    "parameterList":[
+      {"name":"zero",
+       "position":96.61, "angle":101.81
+      },
+      {"name":"S1",
+       "position":180.9, "angle":112.91
+      }]
   },
   {"entryName":"Name SECOND entry",
     "rootScale":0.0,
     "tipScale":0.0,
+    "rootScaleThickness":0.89,
+    "tipScaleThickness":0.89,
     "sweep":0.0,
     "tipPosition":0.0,
     "parameterList":[

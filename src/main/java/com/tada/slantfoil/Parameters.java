@@ -17,6 +17,9 @@ public class Parameters {
     private float rootScale;
     private float tipScale;
 
+	private float rootScaleThickness = 1.0f;
+    private float tipScaleThickness = 1.0f;
+    
     private float sweep;
     private float tipPosition;
     
@@ -76,6 +79,14 @@ public class Parameters {
         return tipPosition;
     }
     
+    public float getRootScaleThickness() {
+		return rootScaleThickness;
+	}
+
+	public float getTipScaleThickness() {
+		return tipScaleThickness;
+	}
+
     public int getNbrOfParameters() {
         return parameterList.size();
     }

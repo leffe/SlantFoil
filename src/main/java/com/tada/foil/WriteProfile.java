@@ -16,6 +16,10 @@ public class WriteProfile {
         writeLocal(profile, scale, 0f, 1f, os);
     }
     
+    public static void write(BaseProfile profile, double teThickness, double teStartAt, OutputStreamWriter os) throws IOException {
+        writeLocal(profile, profile.getScale(), teThickness, teStartAt, os);
+    }
+    
     /**
      * 
      * @param profile
@@ -44,19 +48,6 @@ public class WriteProfile {
         }
     }
     
-    private static void writeLocal3d(RibSet r0, OutputStreamWriter os) throws IOException {
-        Profile3d profile3d = new Profile3d(r0.getProfile(), r0.getProfileOrigo(), r0.mAngle);
-        profile3d.setThickening(r0.getSurface().mTeThickness, r0.getSurface().mTeStartAt);
-        List<Float3dPoint> list = profile3d.getPoints();
-        ListIterator<Float3dPoint> li = list.listIterator();
-        Float3dPoint fp;
-        while (li.hasNext()) {
-            fp = li.next();
-            os.write(f(fp.getA())+","+f(fp.getB())+","+f(fp.getC())+ NL);
-        }
-    }
-    
-    
     public static void writeAutocad(BaseProfile profile, double teThickness, double teStartAt, 
             OutputStreamWriter os) throws IOException {
         double scale = profile.getScale();
@@ -72,29 +63,42 @@ public class WriteProfile {
         os.write(NL);
     }    
     
-    public static void writeAutocadMesh(RibSet r0, RibSet r1, WingSurface surface, 
-            OutputStreamWriter os) throws IOException {
-        int nbOfPoints = r0.getProfile().getNbrOfXvals();
-        os.write("LIMITS OFF"+NL);
-        os.write("3DMESH"+NL);
-        os.write("2"+NL);
-        os.write(nbOfPoints+NL);
+//  private static void writeLocal3d(RibSet r0, OutputStreamWriter os) throws IOException {
+//  Profile3d profile3d = new Profile3d(r0.getProfile(), r0.getProfileOrigo(), r0.mAngle);
+//  profile3d.setThickening(r0.getSurface().mTeThickness, r0.getSurface().mTeStartAt);
+//  List<Float3dPoint> list = profile3d.getPoints();
+//  ListIterator<Float3dPoint> li = list.listIterator();
+//  Float3dPoint fp;
+//  while (li.hasNext()) {
+//      fp = li.next();
+//      os.write(f(fp.getA())+","+f(fp.getB())+","+f(fp.getC())+ NL);
+//  }
+//}
 
-        
-        writeLocal3d(r0, os);
-        writeLocal3d(r1, os);
 
-   //     os.write(NL);
-        
-        
-//        writeLocal3d(profile, scale, x0, teThickness, teStartAt, os);
-//        os.write(NL);
-//        os.write("LINE"+NL);
-//        FloatPair fp = profile.getFirstPair();
-//        os.write(f(fp.getMa()*scale)+","+f(fp.getMb()*scale)+NL);
-//        fp = profile.getLastPair();
-//        os.write(f(fp.getMa()*scale)+","+f(fp.getMb()*scale)+NL);
-//        os.write(NL);
-    }    
+//    public static void writeAutocadMesh(RibSet r0, RibSet r1, WingSurface surface, 
+//            OutputStreamWriter os) throws IOException {
+//        int nbOfPoints = r0.getProfile().getNbrOfXvals();
+//        os.write("LIMITS OFF"+NL);
+//        os.write("3DMESH"+NL);
+//        os.write("2"+NL);
+//        os.write(nbOfPoints+NL);
+//
+//        
+//        writeLocal3d(r0, os);
+//        writeLocal3d(r1, os);
+//
+//   //     os.write(NL);
+//        
+//        
+////        writeLocal3d(profile, scale, x0, teThickness, teStartAt, os);
+////        os.write(NL);
+////        os.write("LINE"+NL);
+////        FloatPair fp = profile.getFirstPair();
+////        os.write(f(fp.getMa()*scale)+","+f(fp.getMb()*scale)+NL);
+////        fp = profile.getLastPair();
+////        os.write(f(fp.getMa()*scale)+","+f(fp.getMb()*scale)+NL);
+////        os.write(NL);
+//    }    
 
 }

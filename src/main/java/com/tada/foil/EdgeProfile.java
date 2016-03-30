@@ -1,6 +1,5 @@
 package com.tada.foil;
 
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -30,9 +29,6 @@ public class EdgeProfile extends BaseProfile {
         setSpline(createSpline(profilePairs));
 //        mSpline.show();
     }
-    
 
-
-	
 	
 }
